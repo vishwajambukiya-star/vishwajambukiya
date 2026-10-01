@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple AI Model</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f6ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2563eb;
+        }
+
+        p {
+            color: #555;
+        }
+
+        input {
+            width: 90%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            margin: 15px 0;
+        }
+
+        button {
+            padding: 12px 25px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #eef4ff;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🤖 Simple AI Model</h1>
+
+    <p>Enter your symptom or question</p>
+
+    <input
+        type="text"
+        id="userInput"
+        placeholder="Example: I have headache"
+    >
+
+    <br>
+
+    <button onclick="predict()">Ask AI</button>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+
+function predict() {
+
+    let input = document.getElementById("userInput").value.toLowerCase();
+    let result = document.getElementById("result");
+
+    let answer = "";
+    let category = "";
+
+    if (input.includes("headache") ||
+        input.includes("head pain") ||
+        input.includes("head hurts")) {
+
+        category = "Headache";
+        answer = "Try resting, drinking enough water and getting adequate sleep.";
+
+    }
+
+    else if (input.includes("fever") ||
+             input.includes("temperature")) {
+
+        category = "Fever";
+        answer = "Stay hydrated and get enough rest. If symptoms are severe or persistent, consult a healthcare professional.";
+
+    }
+
+    else if (input.includes("cough") ||
+             input.includes("coughing")) {
+
+        category = "Cough";
+        answer = "Stay hydrated and rest. If symptoms are severe or persistent, consult a healthcare professional.";
+
+    }
+
+    else if (input.includes("cold") ||
+             input.includes("running nose")) {
+
+        category = "Cold";
+        answer = "Rest and drink enough fluids. Consult a healthcare professional if symptoms become severe.";
+
+    }
+
+    else if (input.includes("stomach") ||
+             input.includes("abdominal")) {
+
+        category = "Stomach discomfort";
+        answer = "Drink enough fluids and eat light foods. If the pain is severe or persistent, consult a healthcare professional.";
+
+    }
+
+    else {
+
+        category = "Unknown";
+        answer = "I can provide only basic general health information. Please consult a healthcare professional for personal medical advice.";
+
+    }
+
+    result.style.display = "block";
+
+    result.innerHTML =
+        "<b>🤖 AI Result</b><br><br>" +
+        "<b>Detected:</b> " + category +
+        "<br><br>" +
+        answer;
+}
+
+</script>
+
+</body>
+</html>
